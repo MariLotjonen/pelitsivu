@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+    each val in list_genres
+     li 
+        a(href=val.url) #{val.name}
+
+    else
+      li There are no genre.
+  ul(class='add') 
+    a(href='/catalog/genre/create') Add new game genre
+
+block footer
+  img(class="displayed" src="http://sapugame.com/wp-content/uploads/2016/05/game-genres-2.jpg", alt="poster is not here yet!")

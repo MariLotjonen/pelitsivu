@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1 #{title}: #{game.title}
+  
+  p #[strong Gamestudio:] 
+    a(href=game.gamestudio.url) #{game.gamestudio.name}
+  p #[strong Summary:] #{game.summary}
+  p #[strong players:] #{game.players}
+  p #[strong Genre:]&nbsp;
+    each val, index in game.genre
+      a(href=val.url) #{val.name}
+      if index < game.genre.length - 1
+        |, 
+  p #[strong Platform:]&nbsp;
+    each val, index in game.platform
+      a(href=val.url) #{val.name}
+      if index < game.platform.length - 1
+        |, 
+
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+  hr
+  p
+    a(href=game.url+'/update') Update Game

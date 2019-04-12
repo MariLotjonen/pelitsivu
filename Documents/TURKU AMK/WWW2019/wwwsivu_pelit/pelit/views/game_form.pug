@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='POST' action='')
+    div.form-group(class='input')
+      label(for='title') Title:
+      input#title.form-control(type='text', placeholder='Name of the game' name='title' required='true' value=(undefined===game ? '' : game.title) )
+    div.form-group(class='input')
+      label(for='gamestudio') Gamestudio:
+      select#gamestudio.form-control(type='select' placeholder='Select gamestudio' name='gamestudio' required='true' )
+        for gamestudio in gamestudios
+          if game
+            //- Handle GET form, where game.gamestudio is an object, and POST form, where it is a string.
+            option(
+              value=gamestudio._id
+              selected=(
+                gamestudio._id.toString()==game.gamestudio._id
+                || gamestudio._id.toString()==game.gamestudio
+              ) ? 'selected' : false
+            ) #{gamestudio.name}
+          else
+            option(value=gamestudio._id) #{gamestudio.name}
+    div.form-group(class='input')
+      label(for='summary') Summary:
+      input#summary.form-control(type='textarea', placeholder='Summary' name='summary' rows='6' value=(undefined===game ? '' : game.summary) required='true')
+    div.form-group(class='input')
+      label(for='players') Players:
+      input#players.form-control(type='text', placeholder='How many players?' name='players' value=(undefined===game ? '' : game.players) required='true') 
+    div.form-group
+      label Genre:
+      div
+        for genre in genres
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+            label(for=genre._id) #{genre.name}
+    div.form-group
+      label Platform:
+      div
+        for platform in platforms
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='platform', id=platform._id, value=platform._id, checked=platform.checked )
+            label(for=platform._id) #{platform.name}
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+    each game in game_list
+      li 
+        a(href=game.url) #{game.title} 
+        |  (#{game.gamestudio.name})
+
+    else
+      li There are no games.
+
+  ul(class='add') 
+    a(href='/catalog/game/create') Add new game  
+
+block footer
+  img(class="displayed" src="https://www.ultragamerz.com/wp-content/uploads/2017/07/geforce-now-gamewall-v2.png", alt="poster is not here yet!")
+   

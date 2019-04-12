@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group(class='input')
+      label(for='studioname') Name:
+      input#studioname.form-control(type='textarea' placeholder='Type here the name of the gamestudio!' name='studioname' required='true' value=(undefined===gamestudio ? '' : gamestudio.studioname))
+      label(for='country') Country:
+      input#country.form-control(type='text' placeholder='Type here the country!' name='country' required='true' value=(undefined===gamestudio ? '' : gamestudio.country) )
+    div.form-group(class='input')
+      label(for='history') Is known for...
+      input#history.form-control(type='textarea', placeholder='achievements and most popular games...? Certain kind genre games?' name='history' value=(undefined===game ? '' : game.history) required='true')
+    div.form-group(class='input')
+      label(for='date_of_birth') Has started in:
+      input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===gamestudio ? '' : gamestudio.date_of_birth) )
+    button.btn.btn-primary(type='submit') Submit
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

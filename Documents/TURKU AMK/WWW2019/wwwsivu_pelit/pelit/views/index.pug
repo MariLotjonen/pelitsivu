@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1 GAME RECORDS
+  p Welcome to Game Records, a website to help you know which game to play.
+
+  h2 What this page has to offer
+
+  if error
+    p Error getting dynamic content.
+  else
+    p Currently we have information about:
+
+    ul
+      li #[strong Games:] !{data.game_count}
+      li #[strong Gamestudios:] !{data.gamestudio_count}
+      li #[strong Game genres:] !{data.genre_count}
+      li #[strong Game platforms:] !{data.platform_count}

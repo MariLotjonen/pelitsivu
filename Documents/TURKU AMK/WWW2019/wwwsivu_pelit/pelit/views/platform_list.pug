@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+    each val in list_platforms
+      li 
+       a(href=val.url) #{val.name}
+
+    else
+      li There are no platforms.
+  ul(class='add') 
+    a(href='/catalog/platform/create') Add new game platform    
+
+block footer
+  img(class="displayed" src="https://08heatherbradburn.files.wordpress.com/2014/02/cropped-game-background.png", alt="poster is not here yet!")
+    

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 Gamestudio: #{gamestudio.name}
+  p (#{gamestudio.date_of_birth} - #{gamestudio.date_of_death})
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Games
+    dl
+    each game in gamestudio_games
+      dt 
+        a(href=game.url) #{game.title}
+      dd #{game.summary}
+
+    else
+      p This gamestudio has no games yet.
+
