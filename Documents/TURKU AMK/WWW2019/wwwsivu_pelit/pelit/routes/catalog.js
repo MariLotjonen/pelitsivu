@@ -19,12 +19,6 @@ router.get('/game/create', game_controller.game_create_get);
 // POST request for creating Game.
 router.post('/game/create', game_controller.game_create_post);
 
-// GET request to delete Game.
-router.get('/game/:id/delete', game_controller.game_delete_get);
-
-// POST request to delete Game.
-router.post('/game/:id/delete', game_controller.game_delete_post);
-
 // GET request to update Game.
 router.get('/game/:id/update', game_controller.game_update_get);
 
@@ -45,18 +39,6 @@ router.get('/gamestudio/create', gamestudio_controller.gamestudio_create_get);
 // POST request for creating Gamestudio.
 router.post('/gamestudio/create', gamestudio_controller.gamestudio_create_post);
 
-// GET request to delete Gamestudio.
-router.get('/gamestudio/:id/delete', gamestudio_controller.gamestudio_delete_get);
-
-// POST request to delete Gamestudio.
-router.post('/gamestudio/:id/delete', gamestudio_controller.gamestudio_delete_post);
-
-// GET request to update Gamestudio.
-router.get('/gamestudio/:id/update', gamestudio_controller.gamestudio_update_get);
-
-// POST request to update Gamestudio.
-router.post('/gamestudio/:id/update', gamestudio_controller.gamestudio_update_post);
-
 // GET request for one Gamestudio.
 router.get('/gamestudio/:id', gamestudio_controller.gamestudio_detail);
 
@@ -71,18 +53,6 @@ router.get('/genre/create', genre_controller.genre_create_get);
 //POST request for creating Genre.
 router.post('/genre/create', genre_controller.genre_create_post);
 
-// GET request to delete Genre.
-router.get('/genre/:id/delete', genre_controller.genre_delete_get);
-
-// POST request to delete Genre.
-router.post('/genre/:id/delete', genre_controller.genre_delete_post);
-
-// GET request to update Genre.
-router.get('/genre/:id/update', genre_controller.genre_update_get);
-
-// POST request to update Genre.
-router.post('/genre/:id/update', genre_controller.genre_update_post);
-
 // GET request for one Genre.
 router.get('/genre/:id', genre_controller.genre_detail);
 
@@ -96,18 +66,6 @@ router.get('/platform/create', platform_controller.platform_create_get);
 
 //POST request for creating Platform.
 router.post('/platform/create', platform_controller.platform_create_post);
-
-// GET request to delete Platform.
-router.get('/platform/:id/delete', platform_controller.platform_delete_get);
-
-// POST request to delete Platform.
-router.post('/platform/:id/delete', platform_controller.platform_delete_post);
-
-// GET request to update Platform.
-router.get('/platform/:id/update', platform_controller.platform_update_get);
-
-// POST request to update Platform.
-router.post('/platform/:id/update', platform_controller.platform_update_post);
 
 // GET request for one Platform.
 router.get('/platform/:id', platform_controller.platform_detail);
