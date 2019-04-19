@@ -7,7 +7,7 @@ block content
     div.form-group(class='input')
       label(for='name') Platform:
       input#name.form-control(type='text', placeholder='PC, PS4...' name='name' value=(undefined===platform ? '' : platform.name))
-    button.btn.btn-primary(type='submit') Submit
+    button.btn.btn-primary(type='submit' class='add') Submit
 
   if errors 
    ul
