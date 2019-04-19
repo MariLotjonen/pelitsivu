@@ -6,16 +6,17 @@ block content
   form(method='POST' action='')
     div.form-group(class='input')
       label(for='studioname') Name:
-      input#studioname.form-control(type='textarea' placeholder='Type here the name of the gamestudio!' name='studioname' required='true' value=(undefined===gamestudio ? '' : gamestudio.studioname))
+      input#studioname.form-control(type='textarea' placeholder='Type here the name of the gamestudio!' name='studioname' value=(undefined===gamestudio ? '' : gamestudio.studioname) required)      label(for='country') Country:
+      p
       label(for='country') Country:
-      input#country.form-control(type='text' placeholder='Type here the country!' name='country' required='true' value=(undefined===gamestudio ? '' : gamestudio.country) )
+      input#country.form-control(type='text' placeholder='Type here the country!' name='country' value=(undefined===gamestudio ? '' : gamestudio.country) )    div.form-group(class='input')
     div.form-group(class='input')
-      label(for='history') Is known for...
-      input#history.form-control(type='textarea', placeholder='achievements and most popular games...? Certain kind genre games?' name='history' value=(undefined===game ? '' : game.history) required='true')
+      label(for='year') Has started in:
+      input#year.form-control(type='text' name='year' value=(undefined===gamestudio ? '' : gamestudio.year) )
     div.form-group(class='input')
-      label(for='date_of_birth') Has started in:
-      input#date_of_birth.form-control(type='date' name='date_of_birth' value=(undefined===gamestudio ? '' : gamestudio.date_of_birth) )
-    button.btn.btn-primary(type='submit') Submit
+      label(for='history') History:
+      textarea.form-control(type='textarea' name='history' cols='30' rows='10' id='history'  placeholder='achievements and most popular games...? Certain kind genre games?' value=(undefined===game ? '' : game.history) required)
+    button.btn.btn-primary(type='submit' class='add') Submit
   if errors 
     ul
       for error in errors

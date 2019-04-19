@@ -99,23 +99,3 @@ exports.platform_create_post =  [
       }
     }
 ];
-
-// Display Platform delete form on GET.
-exports.platform_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Platform delete GET');
-};
-
-// Handle Platform delete on POST.
-exports.platform_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Platform delete POST');
-};
-
-// Display Platform update form on GET.
-exports.platform_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Platform update GET');
-};
-
-// Handle Platform update on POST.
-exports.platform_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Paltform update POST');
-};
