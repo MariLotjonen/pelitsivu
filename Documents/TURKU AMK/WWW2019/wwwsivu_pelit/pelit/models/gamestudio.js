@@ -4,33 +4,32 @@ var Schema = mongoose.Schema;
 
 var GamestudioSchema = new Schema(
   {
-    country: {type: String, required: true, max: 100},
     studioname: {type: String, required: true, max: 100},
-    date_of_birth: {type: Date},
-    date_of_death: {type: Date},
+    country: {type: String, required: true, max: 100},
+    history: {type: String, required: true},
+    year: {type: String},
   }
 );
 
-// Virtual for gamestudio's full name
+// Virtual for gamestudio's name and country
 GamestudioSchema
 .virtual('name')
 .get(function () {
   return this.studioname + ', ' + this.country;
 });
 
-// Virtual for gamestudio's lifespan
+// Virtual for gamestudio's year
 GamestudioSchema
-.virtual('lifespan')
+.virtual('starting_year')
 .get(function () {
-  var lifetime_string='';
-  if (this.date_of_birth) {
-      lifetime_string=moment(this.date_of_birth).format('MMMM Do, YYYY');
-      }
-  lifetime_string+=' - ';
-  if (this.date_of_death) {
-      lifetime_string+=moment(this.date_of_death).format('MMMM Do, YYYY');
-      }
-  return lifetime_string
+  return this.year;
+});
+
+// Virtual for gamestudio's history
+GamestudioSchema
+.virtual('gamestudio_history')
+.get(function () {
+  return this.history;
 });
 
 // Virtual for gamestudio's URL
