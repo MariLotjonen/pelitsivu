@@ -6,8 +6,7 @@ block content
   ul
     each gamestudio in gamestudio_list
       li 
-        a(href=gamestudio.url) #{gamestudio.name} 
-        |  (#{gamestudio.date_of_birth} - #{gamestudio.date_of_death})
+        a(href=gamestudio.url) #{gamestudio.name}, #{gamestudio.starting_year}
 
     else
       li There are no Gamestudios.
