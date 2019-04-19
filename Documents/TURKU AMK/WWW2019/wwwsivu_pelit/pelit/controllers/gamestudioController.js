@@ -54,15 +54,16 @@ exports.gamestudio_create_post = [
     // Validate fields.
     body('country').isLength({ min: 1 }).trim().withMessage('Country must be specified.')
         .isAlphanumeric().withMessage('Country has non-alphanumeric characters.'),
-    body('date_of_birth', 'Invalid date of birth').optional({ checkFalsy: true }).isISO8601(),
-    body('date_of_death', 'Invalid date of death').optional({ checkFalsy: true }).isISO8601(),
+    body('studioname').isLength({ min: 1 }).trim().withMessage('Studioname must be specified.'),
+    body('year').isLength({ min: 1 }).trim().withMessage('Year must be specified.'),
+    body('history'),
+ 
 
     // Sanitize fields.
     sanitizeBody('country').escape(),
     sanitizeBody('studioname').escape(),
-    sanitizeBody('date_of_birth').toDate(),
-    sanitizeBody('date_of_death').toDate(),
-
+    sanitizeBody('year').escape(),
+    sanitizeBody('history').escape(),
     // Process request after validation and sanitization.
     (req, res, next) => {
 
@@ -82,8 +83,8 @@ exports.gamestudio_create_post = [
                 {
                     country: req.body.country,
                     studioname: req.body.studioname,
-                    date_of_birth: req.body.date_of_birth,
-                    date_of_death: req.body.date_of_death
+                    year: req.body.year,
+                    history: req.body.history,
                 });
             gamestudio.save(function (err) {
                 if (err) { return next(err); }
@@ -93,63 +94,3 @@ exports.gamestudio_create_post = [
         }
     }
 ];
-
-// Display Gamestudio delete form on GET.
-exports.gamestudio_delete_get = function(req, res, next) {
-
-    async.parallel({
-        gamestudio: function(callback) {
-            Gamestudio.findById(req.params.id).exec(callback)
-        },
-        gamestudios_games: function(callback) {
-          game.find({ 'gamestudio': req.params.id }).exec(callback)
-        },
-    }, function(err, results) {
-        if (err) { return next(err); }
-        if (results.gamestudio==null) { // No results.
-            res.redirect('/catalog/gamestudios');
-        }
-        // Successful, so render.
-        res.render('gamestudio_delete', { title: 'Delete Gamestudio', gamestudio: results.gamestudio, gamestudio_games: results.gamestudios_games } );
-    });
-
-};
-
-// Handle Gamestudio delete on POST.
-exports.gamestudio_delete_post = function(req, res, next) {
-
-    async.parallel({
-        gamestudio: function(callback) {
-          Gamestudio.findById(req.body.gamestudioid).exec(callback)
-        },
-        gamestudios_games: function(callback) {
-          Book.find({ 'gamestudio': req.body.gamestudioid }).exec(callback)
-        },
-    }, function(err, results) {
-        if (err) { return next(err); }
-        // Success
-        if (results.gamestudios_games.length > 0) {
-            // Gamestudio has games. Render in same way as for GET route.
-            res.render('gamestudio_delete', { title: 'Delete Gamestudio', gamestudio: results.gamestudio, gamestudio_games: results.gamestudios_games } );
-            return;
-        }
-        else {
-            // Gamestudio has no games. Delete object and redirect to the list of gamestudios.
-            Gamestudio.findByIdAndRemove(req.body.gamestudioid, function deleteGamestudio(err) {
-                if (err) { return next(err); }
-                // Success - go to gamestudio list
-                res.redirect('/catalog/gamestudios')
-            })
-        }
-    });
-};
-
-// Display Gamestudio update form on GET.
-exports.gamestudio_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Gamestudio update GET');
-};
-
-// Handle Gamestudio update on POST.
-exports.gamestudio_update_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Gamestudio update POST');
-};
